@@ -1,0 +1,4 @@
+.DS_Store
+**/backup/*
+**/render/*
+!**/render/*.mp4
