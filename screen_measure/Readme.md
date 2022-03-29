@@ -1,3 +1,3 @@
 Flipbook: 
 
-https://github.com/0x384c0/HoudiniProjects/blob/main/screen_measure/render/flipbook.mp4?raw=true
+https://user-images.githubusercontent.com/12985326/160529319-dc018e65-7b04-47d6-acc2-b70807c7feb3.mp4
