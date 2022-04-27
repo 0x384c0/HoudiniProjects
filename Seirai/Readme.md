@@ -16,7 +16,7 @@
 ![pipeline](media/pipeline.png)
 
 ### Render:
-![Render](media/thumbinal.jpg)
+![Render](media/thumbinail.jpg)
 
 ### Video
 
