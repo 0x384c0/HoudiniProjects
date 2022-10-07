@@ -1,0 +1,4 @@
+*.tgd_bak
+*.exr
+mesh/
+maps/
