@@ -13,7 +13,7 @@
 * Blender 3
 
 ### Building Instructions
-* install requited software
+* install required software
 * open .hip project
 * check software paths in /tasks/topnet/control_network
 * cook node /tasks/topnet/output0 
