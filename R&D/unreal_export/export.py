@@ -16,6 +16,13 @@ def export_usd_mesh(static_mesh, output_file):
     task.options = unreal.StaticMeshExporterUSDOptions()
     task.options.stage_options = unreal.UsdStageOptions()
     task.options.stage_options.up_axis = unreal.UsdUpAxis.Y_AXIS
+    task.options.mesh_asset_options = unreal.UsdMeshAssetOptions()
+    task.options.mesh_asset_options.bake_materials = True
+    task.options.mesh_asset_options.lowest_mesh_lod = 0
+    task.options.mesh_asset_options.material_baking_options = unreal.UsdMaterialBakingOptions()
+    task.options.mesh_asset_options.material_baking_options.constant_color_as_single_value = True
+    task.options.mesh_asset_options.material_baking_options.default_texture_size = unreal.IntPoint(4096, 4096)
+    task.options.mesh_asset_options.material_baking_options.textures_dir = unreal.DirectoryPath(os.path.join(os.path.dirname(output_file), "Textures"))
     unreal.Exporter.run_asset_export_task(task)
 
 def export_png(texture_2d, output_file):
@@ -39,7 +46,7 @@ def export_usd_material(material_instance_constant, output_file):
     task.options = unreal.MaterialExporterUSDOptions()
     task.options.material_baking_options = unreal.UsdMaterialBakingOptions()
     task.options.material_baking_options.default_texture_size = unreal.IntPoint(4096, 4096)
-    task.options.material_baking_options.textures_dir = unreal.DirectoryPath(os.path.dirname(output_file))
+    task.options.material_baking_options.textures_dir = unreal.DirectoryPath(os.path.join(os.path.dirname(output_file), "Textures"))
     result = unreal.Exporter.run_asset_export_task(task)
 
 def disable_nanite(static_mesh):
@@ -94,8 +101,8 @@ def export_object(object_path, output_path):
 
 
 output_path = "D:/3D Objects/Unreal Projects/export"
-path = unreal.EditorUtilityLibrary.get_current_content_browser_path()
 
+path = unreal.EditorUtilityLibrary.get_current_content_browser_path()
 asset_data_list = unreal.EditorAssetLibrary.list_assets(path, recursive=True)
 for object_path in asset_data_list:
     export_object(object_path, output_path)
