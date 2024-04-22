@@ -1,0 +1,1 @@
+* Enable USD Importer plugin before use https://docs.unrealengine.com/4.26/en-US/WorkingWithContent/USDinUE4/
