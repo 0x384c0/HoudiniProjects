@@ -1,1 +1,6 @@
-* Enable USD Importer plugin before use https://docs.unrealengine.com/4.26/en-US/WorkingWithContent/USDinUE4/
+Renders
+* [import.hip](https://youtu.be/OA7vbOsYwQE)
+* [icelandic_rocks.hip](https://www.artstation.com/artwork/QXbndd)
+
+TODO:
+* automate and add documentation to project
