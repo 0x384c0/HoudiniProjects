@@ -1,0 +1,5 @@
+*.nknc~
+*.nknc.autosave
+render/
+out/
+*.lnk
