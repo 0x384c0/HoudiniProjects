@@ -1,3 +1,4 @@
+# unreal 5.6 
 import os
 import warnings
 import unreal
@@ -17,6 +18,7 @@ def export_usd_mesh(static_mesh, output_file):
     task.options.stage_options.up_axis = unreal.UsdUpAxis.Y_AXIS
     task.options.stage_options.meters_per_unit = 1
     task.options.mesh_asset_options = unreal.UsdMeshAssetOptions()
+    task.options.mesh_asset_options.use_payload = False
     task.options.mesh_asset_options.bake_materials = True
     task.options.mesh_asset_options.lowest_mesh_lod = 0
     task.options.mesh_asset_options.material_baking_options = unreal.UsdMaterialBakingOptions()
@@ -136,7 +138,7 @@ def get_sort_key_material(object_path):
 def main():
     print("------ Start Exporting ------")
 
-    output_path = os.environ.get('OUTPUT_PATH', "F:/houdini_cache/ancient_valley_export")
+    output_path = os.environ.get('OUTPUT_PATH', "F:/houdini_cache/usd/assets/exported")
     
     path = os.environ.get('ASSETS_PATH', unreal.EditorUtilityLibrary.get_current_content_browser_path())
     

@@ -1,6 +1,6 @@
 @echo off
 
-set UnrealEditor="D:\Program Files\Epic\UE_5.4\Engine\Binaries\Win64\UnrealEditor-Cmd.exe"
+set UnrealEditor="D:\Program Files\Epic Games\UE_5.5\Engine\Binaries\Win64\UnrealEditor-Cmd.exe"
 set ProjectPath="D:\3D Objects\Unreal Projects\ValleyoftheAncient\ValleyoftheAncient.uproject"
 set ExportScript="%cd%\export.py"
 
