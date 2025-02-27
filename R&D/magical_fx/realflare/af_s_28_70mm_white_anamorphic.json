@@ -1,0 +1,231 @@
+{
+  "output": {
+    "element": "FLARE",
+    "path": "",
+    "colorspace": "ACES - ACEScg",
+    "split_files": true,
+    "write": false,
+    "frame": 0
+  },
+  "flare": {
+    "light": {
+      "intensity": 0.1,
+      "position": [
+        -0.2255859375,
+        0.2548828125
+      ],
+      "image_file_enabled": false,
+      "image_file": "",
+      "image_sample_resolution": 256,
+      "image_samples": 8,
+      "show_image": true
+    },
+    "lens": {
+      "sensor_size": [
+        20.0,
+        9.0
+      ],
+      "fstop": 16.0,
+      "lens_model_path": "$RES/model/Nikon/af_s_28_70mm.json",
+      "glasses_path": "$RES/glass/schott",
+      "abbe_nr_adjustment": 0.0,
+      "coating": [
+        381,
+        151,
+        317,
+        482,
+        137,
+        904,
+        158,
+        567,
+        798,
+        106,
+        293,
+        440,
+        767,
+        471,
+        786,
+        667,
+        270,
+        466,
+        718,
+        356,
+        964,
+        924,
+        857,
+        135,
+        259,
+        135,
+        825,
+        206
+      ],
+      "coating_range": [
+        100,
+        1000
+      ],
+      "coating_min_ior": 1.0,
+      "min_area": 0.01
+    },
+    "starburst_aperture": {
+      "shape": {
+        "size": [
+          0.5,
+          0.5
+        ],
+        "blades": 6,
+        "roundness": -0.060000000000000005,
+        "rotation": 0.0,
+        "softness": 0.0
+      },
+      "grating": {
+        "strength": 0.0,
+        "density": 0.25,
+        "length": 0.25,
+        "width": 0.25,
+        "softness": 0.25
+      },
+      "scratches": {
+        "strength": 0.55,
+        "density": 0.38,
+        "length": 0.23,
+        "width": 0.22,
+        "rotation": 0.0,
+        "rotation_variation": 0.14,
+        "softness": 0.0,
+        "parallax": [
+          0.0,
+          0.0
+        ]
+      },
+      "dust": {
+        "strength": 0.22,
+        "density": 0.35,
+        "radius": 0.49,
+        "softness": 0.0,
+        "parallax": [
+          0.0,
+          0.0
+        ]
+      },
+      "image": {
+        "strength": 0.0,
+        "file": "",
+        "size": [
+          0.75,
+          0.75
+        ],
+        "threshold": 1.0
+      }
+    },
+    "starburst": {
+      "intensity": 1.0,
+      "scale": [
+        1.0,
+        1.0
+      ],
+      "distance": 1.0,
+      "blur": 0.0,
+      "rotation": 0.0,
+      "rotation_weight": 1.0,
+      "vignetting_enabled": false,
+      "vignetting": [
+        0.5,
+        1.0
+      ]
+    },
+    "ghost_aperture": {
+      "shape": {
+        "size": [
+          0.5,
+          0.5
+        ],
+        "blades": 6,
+        "roundness": -0.1,
+        "rotation": 0.0,
+        "softness": 1.0
+      },
+      "grating": {
+        "strength": 0.0,
+        "density": 0.9,
+        "length": 0.49,
+        "width": 0.03,
+        "softness": 0.17
+      },
+      "scratches": {
+        "strength": 0.1,
+        "density": 0.44,
+        "length": 0.32,
+        "width": 0.04,
+        "rotation": 85.0,
+        "rotation_variation": 0.09,
+        "softness": 0.12,
+        "parallax": [
+          0.0,
+          0.0
+        ]
+      },
+      "dust": {
+        "strength": 0.1,
+        "density": 0.8,
+        "radius": 0.1,
+        "softness": 0.5,
+        "parallax": [
+          0.0,
+          0.0
+        ]
+      },
+      "image": {
+        "strength": 0.0,
+        "file": "",
+        "size": [
+          1.0,
+          1.0
+        ],
+        "threshold": 0.1
+      }
+    },
+    "ghost": {
+      "fstop": 0.0
+    }
+  },
+  "render": {
+    "resolution": [
+      2048,
+      2048
+    ],
+    "bin_size": 64,
+    "anti_aliasing": 4,
+    "wavelength_count": 5,
+    "wavelength_sub_count": 10,
+    "grid_count": 101,
+    "grid_length": 50.0,
+    "cull_percentage": 0.5,
+    "debug_ghost_enabled": false,
+    "debug_ghost": 132,
+    "starburst": {
+      "resolution": [
+        1024,
+        1024
+      ],
+      "samples": 10
+    },
+    "ghost": {
+      "resolution": [
+        256,
+        256
+      ]
+    },
+    "device": ""
+  },
+  "diagram": {
+    "resolution": [
+      2048,
+      1024
+    ],
+    "debug_ghost": 0,
+    "light_position": 0.0,
+    "grid_count": 8,
+    "grid_length": 50.0,
+    "column_offset": 0
+  }
+}
