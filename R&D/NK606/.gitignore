@@ -1,0 +1,4 @@
+*.nknc~
+*.nknc.autosave
+out/
+*.lnk
