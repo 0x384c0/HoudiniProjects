@@ -1,3 +1,10 @@
+[Galaxies](https://80.lv/articles/how-to-create-gorgeous-space-nebulas-in-3d)\
+[R&D/magical_fx/](R&D/magical_fx/)\
+![image](R&D/magical_fx/render/2.jpg)
+![image](R&D/magical_fx/render/1.jpg)
+![image](R&D/magical_fx/render/3.jpg)
+![image](R&D/magical_fx/render/4.jpg)
+
 [NK606](https://www.compositingacademy.com/advanced-cg-compositing)\
 [R&D/NK606/](R&D/NK606/)\
 ![image](R&D/NK606/render/out.0056.jpg)
