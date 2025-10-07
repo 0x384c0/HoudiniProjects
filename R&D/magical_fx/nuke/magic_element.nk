@@ -1,0 +1,1664 @@
+#! F:/Program Files/Nuke16.0v4/nuke-16.0.4.dll -nx
+version 16.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1919" h="1001" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1256" stretch="1"/>
+            <splitter orientation="2">
+                <split size="563"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="396"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name F:/home/HoudiniProjects/R&D/magical_fx/nuke/magic_element.nk
+ project_directory F:/home/houdini_cache/
+ frame 25
+ last_frame 48
+ lock_range true
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "ACES 1.0 - SDR Video (sRGB - Display)"
+ monitorOutLUT "ACES 1.0 - SDR Video (sRGB - Display)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x388e8e00
+ label BG
+ note_font_size 42
+ xpos 1050
+ ypos -395
+ bdheight 221
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x7171c600
+ label "Render\n"
+ note_font_size 42
+ xpos 1052
+ ypos 1224
+ bdwidth 370
+ bdheight 291
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0xaaaaaa00
+ label "VFX card"
+ note_font_size 42
+ xpos 1528
+ ypos -114
+ bdwidth 214
+ bdheight 238
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0xaaaaaa00
+ label "BG card"
+ note_font_size 42
+ xpos 1050
+ ypos -154
+ bdwidth 197
+ bdheight 166
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x7171c600
+ label Post
+ note_font_size 42
+ xpos 1006
+ ypos 1647
+ bdwidth 198
+ bdheight 216
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0xaaaaaa00
+ label Ref
+ note_font_size 42
+ xpos 1583
+ ypos 1253
+ bdwidth 282
+ bdheight 322
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0x388e8e00
+ label Shockwave
+ note_font_size 42
+ xpos 1351
+ ypos 249
+ bdwidth 496
+ bdheight 609
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0xaaaaaa00
+ label "Shockvawe card"
+ note_font_size 42
+ xpos 1354
+ ypos 915
+ bdwidth 333
+ bdheight 235
+}
+BackdropNode {
+ inputs 0
+ name VFX
+ tile_color 0x388e8e00
+ label VFX
+ note_font_size 42
+ xpos 1527
+ ypos -1151
+ bdwidth 553
+ bdheight 938
+}
+Reformat {
+ inputs 0
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name Reformat2
+ xpos 1729
+ ypos -689
+}
+set Nd6314000 [stack 0]
+Noise {
+ type turbulence
+ size 145
+ lacunarity 1.84
+ gain 0.332
+ gamma 0.64
+ center {960 540}
+ name Noise1
+ xpos 1874
+ ypos -674
+}
+push $Nd6314000
+Flare {
+ position {1020 1020}
+ radius {0 0 150}
+ size_mult 3.8
+ ring_color {2.621999979 3 2.959176064}
+ outer_falloff 3.799999952
+ inner_falloff {1 1 1}
+ chroma_spread -0.056
+ chroma_shift -2.5
+ chroma_shift_angle 114
+ corners 1
+ asym_repeat 8
+ asym_multiplier 0.87
+ asym_falloff 1.24
+ asym_angle 20
+ mult_offset 0
+ name Flare1
+ xpos 1729
+ ypos -649
+}
+Grade {
+ inputs 1+1
+ white 0
+ name Grade3
+ xpos 1729
+ ypos -625
+}
+Grade {
+ multiply 2
+ name Grade5
+ xpos 1729
+ ypos -601
+}
+Read {
+ inputs 0
+ file_type exr
+ file render/magic_element.usdrender_wedgeindex/0/magic_element.usdrender_wedgeindex.####.exr
+ format "1280 934 0 0 1280 934 1 "
+ last 48
+ origlast 48
+ origset true
+ version 23
+ name Read3
+ xpos 1538
+ ypos -1071
+}
+set Nd6350a00 [stack 0]
+Dot {
+ name Dot2
+ xpos 1920
+ ypos -1032
+}
+Radial {
+ replace true
+ area {350 -685 1890 935}
+ name Radial1
+ xpos 1886
+ ypos -921
+}
+Grade {
+ channels alpha
+ gamma 0.33
+ name Grade4
+ xpos 1886
+ ypos -897
+}
+push $Nd6350a00
+Grade {
+ inputs 1+1
+ white 20
+ gamma 3.15
+ name Grade_at_source
+ xpos 1538
+ ypos -891
+}
+Transform {
+ translate {0 941.67}
+ scale 0.6
+ center {865 24}
+ name Transform6
+ xpos 1538
+ ypos -849
+}
+set Nd637d200 [stack 0]
+Transform {
+ rotate 180
+ center {1024 1024}
+ name Transform7
+ xpos 1721
+ ypos -807
+}
+push $Nd637d200
+Merge2 {
+ inputs 2
+ operation max
+ name Merge2
+ xpos 1538
+ ypos -807
+}
+Merge2 {
+ inputs 2
+ mix {{curve i x3 0 x20 1 x33 0.2928948402 s-0.01999999955 t0}}
+ name Merge11
+ xpos 1538
+ ypos -601
+}
+Dot {
+ name Dot12
+ xpos 1572
+ ypos -517
+}
+set Nd6319000 [stack 0]
+Radial {
+ replace true
+ area {438 486 1602 1556}
+ name Radial3
+ xpos 1906
+ ypos -462
+}
+Grade {
+ channels rgba
+ name Grade2
+ xpos 1906
+ ypos -428
+}
+push $Nd6319000
+Grade {
+ blackpoint 0.74
+ whitepoint 0.82
+ name Grade10
+ xpos 1741
+ ypos -454
+}
+Grade {
+ inputs 1+1
+ white 0
+ invert_mask true
+ name Grade11
+ xpos 1741
+ ypos -428
+}
+GodRays {
+ scale {{curve x10 2 x25 1.55}}
+ center {1024 1024}
+ to_color 0
+ gamma 1.34
+ name GodRays2
+ xpos 1741
+ ypos -351
+}
+Blur {
+ size 8.6
+ name Blur1
+ xpos 1741
+ ypos -286
+}
+push $Nd6319000
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge10
+ xpos 1538
+ ypos -280
+}
+set N17b19200 [stack 0]
+Transform {
+ translate {145 910}
+ rotate 38.97407532
+ scale 2.35
+ center {960 540}
+ name Transform5
+ xpos 1146
+ ypos 2386
+}
+Read {
+ inputs 0
+ file_type mov
+ file TMP/refs/vids/valerian/rift_in.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 327
+ origlast 327
+ origset true
+ version 2
+ colorspace texture_paint
+ name Read2
+ xpos 1767
+ ypos 1304
+ postage_stamp false
+}
+TimeOffset {
+ time_offset -21
+ time ""
+ name TimeOffset1
+ xpos 1767
+ ypos 1352
+}
+set N17b5a000 [stack 0]
+Transform {
+ center {960 540}
+ name Transform2
+ xpos 1767
+ ypos 1376
+}
+Transform {
+ translate {{curve x10 0 x13 -46.29999924 x17 -80 x22 -141.5 x24 -175.5 x32 -327 x35 -387 x41 -514.5 x49 -701 -943} {curve x10 0 x13 35.09999847 x17 54 x22 82 x24 91 x32 113.5 x35 120 x41 128.5 x49 134 155}}
+ center {663.2000122 749.4000244}
+ name Transform3
+ xpos 1767
+ ypos 1400
+}
+set N17b46a00 [stack 0]
+Transform {
+ translate {560 -570}
+ rotate -180
+ scale {2.816999912 2.817000151}
+ center {1204 546}
+ name Transform4
+ xpos 1767
+ ypos 1437
+}
+set N17b46f00 [stack 0]
+ContactSheet {
+ inputs 2
+ width 3167
+ height 1148
+ rows 1
+ columns 2
+ name ContactSheet1
+ xpos 1274
+ ypos 2386
+}
+Axis3 {
+ inputs 0
+ translate {{"Tracker1.translate.x * 0.0005"} {"Tracker1.translate.y * 0.0005"} 0}
+ name Axis1
+ xpos 1210
+ ypos 1334
+}
+Camera3 {
+ name Camera2
+ xpos 1210
+ ypos 1445
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file render/magic_element.usdrender_shockwave/magic_element.usdrender_shockwave.####.jpg
+ format "1280 1280 0 0 1280 1280 1 "
+ last 24
+ after black
+ origlast 24
+ origset true
+ on_error black
+ version 17
+ name Read4
+ xpos 1364
+ ypos 329
+}
+Reformat {
+ name Reformat1
+ xpos 1364
+ ypos 432
+}
+set N17b48800 [stack 0]
+Dot {
+ name Dot8
+ xpos 1525
+ ypos 435
+}
+Noise {
+ replace true
+ type turbulence
+ size 640
+ zoffset 1.12
+ lacunarity 1.8
+ gain 0.71
+ gamma 0.63
+ center {1024 778}
+ name Noise2
+ xpos 1491
+ ypos 514
+}
+push $N17b48800
+ColorCorrect {
+ gain {{curve x1 2.903833389 0.3753936291 x4 0.1442544013 0.1245092526 0.03149999678} {curve x1 2.494022846 0.6638695002 x4 0.2125887871 0.1751919091 0.06926115602} {curve x1 2.711673021 1 x4 0.9015898705 0.6917180419 0.4499999881} 1}
+ name ColorCorrect_animated
+ xpos 1364
+ ypos 478
+}
+Grade {
+ white 1.3
+ name Grade6
+ xpos 1364
+ ypos 502
+}
+Dot {
+ name Dot9
+ xpos 1398
+ ypos 560
+}
+set N17bfa000 [stack 0]
+Grade {
+ inputs 1+1
+ white 0.21
+ name Grade1
+ xpos 1491
+ ypos 557
+}
+Grade {
+ white 1.48
+ name Grade7
+ xpos 1491
+ ypos 600
+}
+push $N17bfa000
+Merge2 {
+ inputs 2
+ mix {{curve x3 0 x9 1}}
+ name Merge5
+ xpos 1364
+ ypos 600
+}
+Dot {
+ name Dot10
+ xpos 1398
+ ypos 655
+}
+set N17bfa400 [stack 0]
+TimeOffset {
+ time_offset 5
+ time ""
+ name TimeOffset2
+ xpos 1491
+ ypos 652
+}
+Grade {
+ white {{curve x9 0 s0 t0.5400000215 x12 0.6 s0.0120000001 t0}}
+ name Grade9
+ xpos 1491
+ ypos 676
+}
+push $N17bfa400
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge7
+ xpos 1364
+ ypos 676
+}
+Dot {
+ name Dot11
+ xpos 1398
+ ypos 726
+}
+set N17bfa800 [stack 0]
+Expression {
+ expr0 x/width
+ expr1 y/height
+ name Expression1
+ xpos 1565
+ ypos 723
+}
+set N17c28300 [stack 0]
+Noise {
+ replace true
+ type turbulence
+ size 1000
+ zoffset {{"5 + frame * 0.01"}}
+ lacunarity 1.28
+ gain 0.8
+ gamma 0.22
+ center {960 540}
+ name Noise_uv_offset
+ xpos 1710
+ ypos 723
+}
+Grade {
+ white 0.5
+ add -0.5
+ black_clamp false
+ name Grade_uv_offset_range
+ xpos 1710
+ ypos 769
+}
+Grade {
+ white {{curve x3 0 x5 0.1}}
+ black_clamp false
+ name Grade_uv_offset_animated
+ xpos 1710
+ ypos 807
+}
+push $N17c28300
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge8
+ xpos 1565
+ ypos 807
+}
+push $N17bfa800
+STMap {
+ inputs 2
+ channels rgba
+ uv rgb
+ name STMap1
+ xpos 1364
+ ypos 807
+}
+NoOp {
+ name NoOp3
+ xpos 1364
+ ypos 995
+}
+BlendMat {
+ operation plus
+ name BlendMat2
+ xpos 1364
+ ypos 1054
+}
+Card2 {
+ translate {0.23550001 0.01799998432 -1.9}
+ rotate {0 0 21}
+ uniform_scale 2.2
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card1
+ xpos 1364
+ ypos 1101
+}
+Dot {
+ name Dot13
+ xpos 1398
+ ypos 1181
+}
+push $N17b19200
+NoOp {
+ name NoOp1
+ xpos 1538
+ ypos -34
+}
+BlendMat {
+ operation plus
+ name BlendMat1
+ xpos 1538
+ ypos 25
+}
+Card2 {
+ translate {0.2560000122 0.01799998432 -2}
+ rotate {0 0 21}
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card3
+ xpos 1538
+ ypos 72
+}
+Dot {
+ name Dot1
+ xpos 1572
+ ypos 152
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file F:/home/houdini_cache/TMP/img/hs-2015-02-a-hires_jpg-jpg.jpg
+ format "6000 1918 0 0 6000 1918 1 "
+ origset true
+ colorspace texture_paint
+ name Read1
+ xpos 1060
+ ypos -315
+}
+Grade {
+ white 0.57
+ gamma 0.24
+ name Grade8
+ xpos 1060
+ ypos -202
+}
+NoOp {
+ name NoOp2
+ xpos 1060
+ ypos -74
+}
+Card2 {
+ translate {0 0 -10}
+ uniform_scale 10
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card2
+ xpos 1060
+ ypos -37
+}
+Scene {
+ inputs 2
+ name Scene1
+ xpos 1070
+ ypos 128
+}
+push 0
+Scene {
+ inputs 3
+ name Scene2
+ xpos 1070
+ ypos 1157
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos 814
+ ypos -1144
+}
+Dot {
+ name Dot6
+ xpos 848
+ ypos 1469
+}
+set N17d3c400 [stack 0]
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ ztest_enabled false
+ samples {{curve}}
+ motion_vectors_type distance
+ name ScanlineRender1
+ xpos 1062
+ ypos 1466
+}
+Dot {
+ name Dot5
+ xpos 1096
+ ypos 1551
+}
+push $N17d3c400
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos 814
+ ypos 1548
+}
+Dot {
+ name Dot3
+ xpos 850
+ ypos 1707
+}
+set N17d3cc00 [stack 0]
+Dot {
+ name Dot4
+ xpos 1148
+ ypos 1707
+}
+Group {
+ name bm_OpticalGlow1
+ knobChanged "n1 = nuke.thisNode()\nk1 = nuke.thisKnob()\nif k1.name() == \"effectOnly\":\n    if k1.value() == 1:\n        n1\[\"mergeType\"].setEnabled(False)\n    else:\n        n1\[\"mergeType\"].setEnabled(True) \n\n\nn2 = nuke.thisNode()\nk2 = nuke.thisKnob()\nif k2.name() == \"useThresholdCheckbox\":\n    if k2.value() == 1:\n        n2\[\"viewRange\"].setEnabled(True)\n    else:\n        n2\[\"viewRange\"].setEnabled(False)"
+ tile_color 0x222222ff
+ xpos 1114
+ ypos 1801
+ addUserKnob {20 Options}
+ addUserKnob {4 mergeType l "Merge Operation" +DISABLED M {Max Over Screen Plus "" "" ""}}
+ addUserKnob {26 spacer_01 l "" -STARTLINE T "      "}
+ addUserKnob {6 effectOnly l " Effect Only" -STARTLINE}
+ effectOnly true
+ addUserKnob {4 glowType l "Glow Math" M {Double Fibonacci ""}}
+ glowType Fibonacci
+ addUserKnob {26 spacer_02 l "" -STARTLINE T "   "}
+ addUserKnob {6 useThresholdCheckbox l "Use Threshold" -STARTLINE}
+ useThresholdCheckbox true
+ addUserKnob {6 cropBboxCheck l "Crop BBox   " +STARTLINE}
+ cropBboxCheck true
+ addUserKnob {6 viewRange l "View Threshold" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {20 tGrp l "Threshold Selector" n 1}
+ tGrp 0
+ addUserKnob {26 spacer_03 l "" +STARTLINE T " "}
+ addUserKnob {41 range l "" +STARTLINE T Keyer1.range}
+ addUserKnob {26 spacer_04 l "" +STARTLINE T " "}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {26 ""}
+ addUserKnob {7 glowSize l Size R 0 500}
+ glowSize 202
+ addUserKnob {7 glowAspect l Aspect R 0.5 2}
+ glowAspect 1
+ addUserKnob {7 glowBrightness l Brightness R 0 3}
+ glowBrightness 0.42
+ addUserKnob {18 glowGamma l Gamma R 0 2}
+ glowGamma 2
+ addUserKnob {6 glowGamma_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowGamma_panelDropped_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 glowSaturation l Saturation R 0 3}
+ glowSaturation 1.22
+ addUserKnob {6 glowSaturation_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 glowSaturation_panelDropped_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {26 ""}
+ addUserKnob {4 alphaChoice l "Use Alpha From" M {Plate "Glow Only" "Glow Range" "Plate & Glow" ""}}
+ alphaChoice "Plate & Glow"
+ addUserKnob {7 glowMix l Mix}
+ glowMix 1
+ addUserKnob {26 ""}
+ addUserKnob {20 versionInfo l Info}
+ addUserKnob {26 ""}
+ addUserKnob {26 versionInfo_1 l "" +STARTLINE T "\nCreated by Ben McEwan\nwww.benmcewan.com\n\nVersion 3.1\nLast Updated: February 9th, 2018\n"}
+ addUserKnob {26 ""}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -1113
+  ypos -1060
+ }
+ Expression {
+  expr3 a==0?0:a
+  name Expression1
+  label "Alpha Error Fix"
+  xpos -1113
+  ypos -1006
+ }
+ Dot {
+  name Dot1
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -1079
+  ypos -918
+ }
+set N17d3d400 [stack 0]
+ Dot {
+  name Dot21
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -1079
+  ypos 85
+ }
+set N17d3d800 [stack 0]
+ Dot {
+  name Dot25
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -1304
+  ypos 85
+ }
+ Dot {
+  name Dot26
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -1304
+  ypos 582
+ }
+set N17dc4000 [stack 0]
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop1
+  xpos -1338
+  ypos 1030
+ }
+push $N17d3d400
+ Keyer {
+  operation "luminance key"
+  range {0.3727746774 1 1 1}
+  name Keyer1
+  xpos -732
+  ypos -927
+ }
+set N17d85e00 [stack 0]
+ Dot {
+  name Dot27
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 554
+  ypos -918
+ }
+ Dot {
+  name Dot28
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 554
+  ypos 585
+ }
+set N17dc4800 [stack 0]
+ Shuffle {
+  in alpha
+  red alpha
+  name Shuffle2
+  tile_color 0xffffff01
+  label "\[value alpha] > \[value out]"
+  xpos 520
+  ypos 883
+ }
+push $N17d85e00
+ Premult {
+  name Premult1
+  xpos -732
+  ypos -891
+ }
+push $N17d3d400
+ Switch {
+  inputs 2
+  which {{useThresholdCheckbox}}
+  name Switch3
+  xpos -732
+  ypos -810
+ }
+ Dot {
+  name Dot2
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -698
+  ypos -754
+ }
+set N17dc4c00 [stack 0]
+ Dot {
+  name Dot11
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -578
+  ypos -754
+ }
+set N17dc5000 [stack 0]
+ Dot {
+  name Dot10
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -444
+  ypos -754
+ }
+set N17dc5400 [stack 0]
+ Dot {
+  name Dot9
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -314
+  ypos -754
+ }
+set N17dc5800 [stack 0]
+ Dot {
+  name Dot8
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -185
+  ypos -754
+ }
+set N17dc5c00 [stack 0]
+ Dot {
+  name Dot7
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -75
+  ypos -754
+ }
+set N17dfc000 [stack 0]
+ Dot {
+  name Dot6
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 47
+  ypos -754
+ }
+set N17dfc400 [stack 0]
+ Dot {
+  name Dot5
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 179
+  ypos -754
+ }
+set N17dfc800 [stack 0]
+ Dot {
+  name Dot4
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 301
+  ypos -754
+ }
+set N17dfcc00 [stack 0]
+ Dot {
+  name Dot3
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 421
+  ypos -754
+ }
+ Blur {
+  size {{(glowType==0?(glowSize*25.6):(glowSize*5.5))*glowAspect} {glowType==0?(glowSize*25.6):(glowSize*5.5)}}
+  name Blur10
+  xpos 387
+  ypos -714
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/512):(glowBrightness/50)}}
+  name Multiply10
+  xpos 387
+  ypos -678
+ }
+ Dot {
+  name Dot13
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 421
+  ypos -92
+ }
+push $N17dfcc00
+ Blur {
+  size {{(glowType==0?(glowSize*12.8):(glowSize*3.4))*glowAspect} {glowType==0?(glowSize*12.8):(glowSize*3.4)}}
+  name Blur9
+  xpos 267
+  ypos -712
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/256):(glowBrightness/33)}}
+  name Multiply9
+  xpos 267
+  ypos -676
+ }
+ Dot {
+  name Dot14
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 301
+  ypos -156
+ }
+push $N17dfc800
+ Blur {
+  size {{(glowType==0?(glowSize*6.4):(glowSize*2.1))*glowAspect} {glowType==0?(glowSize*6.4):(glowSize*2.1)}}
+  name Blur8
+  xpos 145
+  ypos -716
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/128):(glowBrightness/20)}}
+  name Multiply8
+  xpos 145
+  ypos -680
+ }
+ Dot {
+  name Dot15
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 179
+  ypos -221
+ }
+push $N17dfc400
+ Blur {
+  size {{(glowType==0?(glowSize*3.2):(glowSize*1.3))*glowAspect} {glowType==0?(glowSize*3.2):(glowSize*1.3)}}
+  name Blur7
+  xpos 13
+  ypos -717
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/64):(glowBrightness/12.5)}}
+  name Multiply7
+  xpos 13
+  ypos -681
+ }
+ Dot {
+  name Dot16
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos 47
+  ypos -285
+ }
+push $N17dfc000
+ Blur {
+  size {{(glowType==0?(glowSize*1.6):(glowSize/1.25))*glowAspect} {glowType==0?(glowSize*1.6):(glowSize/1.25)}}
+  name Blur6
+  xpos -109
+  ypos -716
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/32):(glowBrightness/7.68)}}
+  name Multiply6
+  xpos -109
+  ypos -680
+ }
+ Dot {
+  name Dot17
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -75
+  ypos -354
+ }
+push $N17dc5c00
+ Blur {
+  size {{(glowType==0?(glowSize/12.5):(glowSize/2))*glowAspect} {glowType==0?(glowSize/12.5):(glowSize/2)}}
+  name Blur5
+  xpos -219
+  ypos -719
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/16):(glowBrightness/4.75)}}
+  name Multiply5
+  xpos -219
+  ypos -683
+ }
+ Dot {
+  name Dot18
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -185
+  ypos -421
+ }
+push $N17dc5800
+ Blur {
+  size {{(glowType==0?(glowSize/2.5):(glowSize/3.3333))*glowAspect} {glowType==0?(glowSize/2.5):(glowSize/3.3333)}}
+  name Blur4
+  xpos -348
+  ypos -721
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/8):(glowBrightness/2.94)}}
+  name Multiply4
+  xpos -348
+  ypos -685
+ }
+ Dot {
+  name Dot19
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -314
+  ypos -479
+ }
+push $N17dc5400
+ Blur {
+  size {{(glowSize/5)*glowAspect} {glowSize/5}}
+  name Blur3
+  xpos -478
+  ypos -723
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/4):(glowBrightness/1.815)}}
+  name Multiply3
+  xpos -478
+  ypos -687
+ }
+ Dot {
+  name Dot20
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -444
+  ypos -535
+ }
+push $N17dc5000
+ Blur {
+  size {{(glowSize/10)*glowAspect} {glowSize/10}}
+  name Blur2
+  xpos -612
+  ypos -723
+ }
+ Multiply {
+  channels rgb
+  value {{glowType==0?(glowBrightness/2):(glowBrightness/1.124)}}
+  name Multiply2
+  xpos -612
+  ypos -687
+ }
+ Dot {
+  name Dot12
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -578
+  ypos -592
+ }
+push $N17dc4c00
+ Blur {
+  size {{glowSize/50}}
+  name Blur1
+  xpos -732
+  ypos -722
+ }
+ Multiply {
+  channels rgb
+  value {{glowBrightness}}
+  name Multiply1
+  xpos -732
+  ypos -686
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge1
+  xpos -732
+  ypos -595
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge2
+  xpos -732
+  ypos -538
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge3
+  xpos -732
+  ypos -482
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge4
+  xpos -732
+  ypos -424
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge5
+  xpos -732
+  ypos -357
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge6
+  xpos -732
+  ypos -288
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge7
+  xpos -732
+  ypos -224
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge8
+  xpos -732
+  ypos -159
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge9
+  xpos -732
+  ypos -95
+ }
+ Multiply {
+  channels alpha
+  value 0.1
+  name Multiply22
+  xpos -732
+  ypos -57
+ }
+ ColorCorrect {
+  saturation {{glowSaturation} {glowSaturation} {glowSaturation} 1}
+  gamma {{glowGamma} {glowGamma} {glowGamma} 1}
+  name ColorCorrect1
+  xpos -732
+  ypos -21
+ }
+ Multiply {
+  value {{glowType==0?(glowMix):(glowMix/2.5)}}
+  name Multiply11
+  xpos -732
+  ypos 3
+ }
+ Dot {
+  name Dot24
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -698
+  ypos 149
+ }
+set N17eb7800 [stack 0]
+ Dot {
+  name Dot22
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -472
+  ypos 227
+ }
+ Dot {
+  name Dot23
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -472
+  ypos 420
+ }
+set N17fc4000 [stack 0]
+push $N17eb7800
+push $N17d3d800
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge13
+  xpos -650
+  ypos 258
+ }
+push $N17eb7800
+push $N17d3d800
+ Merge2 {
+  inputs 2
+  operation screen
+  name Merge12
+  xpos -752
+  ypos 257
+ }
+push $N17eb7800
+push $N17d3d800
+ Merge2 {
+  inputs 2
+  name Merge11
+  xpos -860
+  ypos 259
+ }
+push $N17eb7800
+push $N17d3d800
+ Merge2 {
+  inputs 2
+  operation max
+  name Merge10
+  xpos -1113
+  ypos 259
+ }
+ Switch {
+  inputs 4
+  which {{mergeType}}
+  name Switch1
+  xpos -819
+  ypos 340
+ }
+ Switch {
+  inputs 2
+  which {{effectOnly}}
+  name Switch2
+  xpos -819
+  ypos 416
+ }
+set N17fb4300 [stack 0]
+ Dot {
+  name Dot29
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -918
+  ypos 491
+ }
+ Dot {
+  name Dot30
+  label "  "
+  note_font "Arial Black"
+  note_font_size 16
+  xpos -918
+  ypos 718
+ }
+push $N17dc4800
+push $N17fb4300
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy3
+  xpos -564
+  ypos 576
+ }
+push $N17fc4000
+push $N17fb4300
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos -702
+  ypos 574
+ }
+push $N17dc4000
+push $N17fb4300
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -819
+  ypos 573
+ }
+ Switch {
+  inputs 4
+  which {{alphaChoice}}
+  name Switch4
+  xpos -819
+  ypos 715
+ }
+ Switch {
+  inputs 2
+  which {{viewRange x1 0}}
+  name Switch5
+  xpos -819
+  ypos 889
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos -817
+  ypos 1030
+  disable {{!cropBboxCheck}}
+ }
+ Output {
+  name Output1
+  xpos -817
+  ypos 1191
+ }
+end_group
+Grade {
+ white {{curve x1 3.531734228 1.233333588 x11 0.9401667714} {curve x1 1.288906336 2.019999266 x11 1.489666581} {curve x1 3.726762533 5.56666708 x11 2.040166855} {curve x1 1.200000048 1.200000048 x11 1.200000048}}
+ name Grade_animated1
+ xpos 1114
+ ypos 1835
+}
+push $N17d3cc00
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge6
+ xpos 818
+ ypos 1835
+}
+Crop {
+ box {0 0 1920 1080}
+ name Crop1
+ xpos 818
+ ypos 1872
+}
+FrameRange {
+ first_frame {{root.first_frame}}
+ last_frame {{root.last_frame}}
+ time ""
+ name FrameRange1
+ xpos 818
+ ypos 1940
+}
+Write {
+ file video/magic_element_burst.mp4
+ file_type mov
+ mov64_format "mp4 (MP4 (MPEG-4 Part 14))"
+ mov64_codec h264
+ mov_h264_codec_profile "High 4:2:0 8-bit"
+ mov64_pixel_format {
+  {0}
+ }
+ mov64_quality Custom
+ mov64_fast_start true
+ mov64_write_timecode true
+ mov64_gop_size 12
+ mov64_b_frames 0
+ mov64_bitrate 28000
+ mov64_bitrate_tolerance 0
+ mov64_quality_min 1
+ mov64_quality_max 3
+ transformType display
+ colorspace "Gamma 2.2 Encoded Rec.709"
+ create_directories true
+ checkHashOnRead false
+ version 9
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write2
+ xpos 818
+ ypos 1974
+ postage_stamp true
+}
+set N18050000 [stack 0]
+push $N17b46a00
+ContactSheet {
+ inputs 2
+ width 3167
+ height 1148
+ rows 1
+ columns 2
+ name ContactSheet2
+ xpos 818
+ ypos 2083
+}
+push $N17b46f00
+Saturation {
+ saturation 0
+ name Saturation1
+ xpos 1767
+ ypos 1479
+}
+Write {
+ file "TMP/refs/vids/valerian/\[value this.name]/out_####.jpg"
+ file_type jpeg
+ checkHashOnRead false
+ version 1
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write1
+ xpos 1767
+ ypos 1503
+}
+push $N17b5a000
+CameraTracker {
+ serializeKnob "22 serialization::archive 19 0 4 0 2 0 0 1 0 4 1 1
+0 0 1 1 0.375 0 0 0 0 1919 1079 1 0 0 1 0 8 1 1
+1 1 0 0 253 868 10 1 0
+2 1 8 1 0 0 1 0 8 1 12 1 0
+3 10 2 0 0 0 0 0 1 -1 1 0 0 1 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 3 0 0 0 -1 0 1 0 0 1 0 10 2 0 0 1 0 12 3 -1 2 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 0 10 2 0 0 0 0 0 0 0 0"
+ trackStart -20
+ trackStop 306
+ referenceFrames 1
+ filenameSalt 17829
+ userTrackViews {left right}
+ userTracks { { 1 15 1 } 
+{ { 4 1 20 enabled e 1 } 
+{ 3 1 75 name name 1 } 
+{ 2 1 58 x x 1 } 
+{ 2 1 58 y y 1 } 
+{ 2 1 58 lx lx 0 } 
+{ 2 1 58 ly ly 0 } 
+{ 2 1 58 rx rx 0 } 
+{ 2 1 58 ry ry 0 } 
+{ 4 1 20 survey s 1 } 
+{ 1 1 58 X X 1 } 
+{ 1 1 58 Y Y 1 } 
+{ 1 1 58 Z Z 1 } 
+{ 1 0 69 error error 1 } 
+{ 1 1 0 Reference reference 1 } 
+{ 1 1 0 flags flags 0 } 
+} 
+{ 
+ { 1 "user 1" {curve x1 253} {curve x1 868} {curve} {curve} {curve} {curve} 0 0 0 0 -1 1 0  } 
+} 
+}
+
+trackCurves {"num tracks" {curve}
+  "track len - min" {curve}
+  "track len - avg" {curve}
+  "track len - max" {curve}
+  "Min Length" {curve x-20 0 x306 0}
+  "Solve Error" {curve x-20 0 x306 0}
+  "error - min" {curve}
+  "error - rms" {curve}
+  "error - track" {curve}
+  "error - max" {curve}
+  "Max Track Error" {curve x-20 0 x306 0}
+  "Max Error" {curve x-20 0 x306 0}}
+numberFeatures 300
+refineFeatures true
+name CameraTracker1
+xpos 1739
+ypos 2012
+}
+CameraTracker {
+inputs 0
+serializeKnob "22 serialization::archive 19 0 4 0 2 0 0 0 0 0 0 0 0 0 0 0 0 -1 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0"
+trackStart 1
+trackStop 48
+filenameSalt 6330
+userTrackViews {left right}
+name CameraTracker2
+xpos 1833
+ypos 1933
+}
+push $N17b5a000
+Tracker4 {
+tracks { { 1 31 1 } 
+{ { 5 1 20 enable e 1 } 
+{ 3 1 75 name name 1 } 
+{ 2 1 58 track_x track_x 1 } 
+{ 2 1 58 track_y track_y 1 } 
+{ 2 1 63 offset_x offset_x 1 } 
+{ 2 1 63 offset_y offset_y 1 } 
+{ 4 1 27 T T 1 } 
+{ 4 1 27 R R 1 } 
+{ 4 1 27 S S 1 } 
+{ 2 0 45 error error 1 } 
+{ 1 1 0 error_min error_min 1 } 
+{ 1 1 0 error_max error_max 1 } 
+{ 1 1 0 pattern_x pattern_x 1 } 
+{ 1 1 0 pattern_y pattern_y 1 } 
+{ 1 1 0 pattern_r pattern_r 1 } 
+{ 1 1 0 pattern_t pattern_t 1 } 
+{ 1 1 0 search_x search_x 1 } 
+{ 1 1 0 search_y search_y 1 } 
+{ 1 1 0 search_r search_r 1 } 
+{ 1 1 0 search_t search_t 1 } 
+{ 2 1 0 key_track key_track 1 } 
+{ 2 1 0 key_search_x key_search_x 1 } 
+{ 2 1 0 key_search_y key_search_y 1 } 
+{ 2 1 0 key_search_r key_search_r 1 } 
+{ 2 1 0 key_search_t key_search_t 1 } 
+{ 2 1 0 key_track_x key_track_x 1 } 
+{ 2 1 0 key_track_y key_track_y 1 } 
+{ 2 1 0 key_track_r key_track_r 1 } 
+{ 2 1 0 key_track_t key_track_t 1 } 
+{ 2 1 0 key_centre_offset_x key_centre_offset_x 1 } 
+{ 2 1 0 key_centre_offset_y key_centre_offset_y 1 } 
+} 
+{ 
+ { {curve K x1 1} "track 1" {curve x1 149.5 154.5 154.6473083 148.3807831 170 165 144.5 143 167 x11 170 159.5 140.5 148 x18 158 x20 154.5 x21 152 147.5} {curve x1 300.5 295.5 291.9804688 285.2258301 273 256 271 258 247 x11 260.5 270.5 277 286.5 x18 284 x20 294 x21 296.5 301} {curve K x1 0} {curve K x1 0} 1 0 0 {curve x1 0 0 8.771948738e-05 0.0001244702204 0 0 0 0 0 x11 0 0 0 0 x18 0 x20 0 x21 0 0} 0 0.000375036 -30 -30 30 30 -21 -21 21 21 {curve} {curve x1 99 103 x5 119 x6 114 93 92 116 139 119 149 109 163 89 185 97 107 217 103 101 97} {curve x1 249 245 x5 222 x6 205 220 207 196 193 209 179 219 167 226 163 235 233 147 243 245 250} {curve x1 200 204 x5 220 x6 215 194 193 217 240 220 250 210 264 190 286 198 208 318 204 202 198} {curve x1 350 346 x5 323 x6 306 321 308 297 294 310 280 320 268 327 264 336 334 248 344 346 351} {curve x1 120 124 x5 140 x6 135 114 113 137 160 140 170 130 184 110 206 118 128 238 124 122 118} {curve x1 270 266 x5 243 x6 226 241 228 217 214 230 200 240 188 247 184 256 254 168 264 266 271} {curve x1 179 183 x5 199 x6 194 173 172 196 219 199 229 189 243 169 265 177 187 297 183 181 177} {curve x1 329 325 x5 302 x6 285 300 287 276 273 289 259 299 247 306 243 315 313 227 323 325 330} {curve x1 29 30 x5 29.5 x6 29.5 30 29.5 29.5 29.5 29.5 29 29 30 30 29.5 29.5 29.5 30 30 29.5 29} {curve x1 30 29 x5 29.5 x6 29.5 29.5 29.5 29.5 29 30 29 30 29 29.5 30 30 29.5 29 29.5 30 29.5}  } 
+} 
+}
+
+cornerPinOptions "Transform (match-move)"
+translate {{curve x1 0 5 5.14730835 -1.119216919 20.5 15.5 -5 -6.5 17.5 x11 20.5 10 -9 -1.5 x18 8.5 x20 5 x21 2.5 -2} {curve x1 0 -5 -8.51953125 -15.27416992 -27.5 -44.5 -29.5 -42.5 -53.5 x11 -40 -30 -23.5 -14 x18 -16.5 x20 -6.5 x21 -4 0.5}}
+center {{curve x1 149.5 149.5 149.5 149.5 149.5 149.5 149.5 149.5 149.5 x11 149.5 149.5 149.5 149.5 x18 149.5 x20 149.5 x21 149.5 149.5} {curve x1 300.5 300.5 300.5 300.5 300.5 300.5 300.5 300.5 300.5 x11 300.5 300.5 300.5 300.5 x18 300.5 x20 300.5 x21 300.5 300.5}}
+selected_tracks 0
+name Tracker1
+xpos 1313
+ypos 1352
+}
+push $N18050000
+Viewer {
+frame_range 1-48
+colour_sample_bbox {0.400000006 -0.1916666627 0.4010416567 -0.190624997}
+gl_buffer_depth half-float
+viewerProcess "ACES 1.0 - SDR Video (sRGB - Display)"
+translate {0.3939999938 0.3860000074}
+rotate 48.45906448
+monitorOutNDISenderName "Nuke - magic_element - Viewer1"
+name Viewer1
+xpos 899
+ypos 2164
+}
