@@ -1,0 +1,146 @@
+#! F:/Program Files/Nuke16.0v4/nuke-16.0.4.dll -nx
+version 16.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1919" h="1001" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1256" stretch="1"/>
+            <splitter orientation="2">
+                <split size="700"/>
+                <dock id="" activePageId="Viewer.1" focus="true">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="259"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+                <page id="uk.co.flaresim.lensbrowser"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/Downloads/lense_sim.nk
+ last_frame 24
+ lock_range true
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file_type jpeg
+ file F:/home/houdini_cache/render/magic_element.karmarendersettings_pattern_vdb_layer_1/magic_element.karmarendersettings_pattern_vdb_layer_1.####.jpg
+ format "1280 1422 0 0 1280 1422 1 "
+ last 24
+ origlast 24
+ origset true
+ name Read1
+ xpos 157
+ ypos -205
+}
+Grade {
+ white 50
+ name Grade1
+ xpos -24
+ ypos -139
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "256 256 0 0 256 256 1 square_256"
+ name Constant2
+ xpos -153
+ ypos -252
+}
+Radial {
+ area {19 25 237 231}
+ softness 0.285
+ name Radial1
+ xpos -153
+ ypos -180
+}
+Grade {
+ multiply 100
+ name Grade2
+ xpos -153
+ ypos -156
+}
+Transform {
+ scale {0.1 0.1}
+ center {128 128}
+ name Transform1
+ xpos -153
+ ypos -125
+}
+set Nc48e7200 [stack 0]
+Transform {
+ translate {670 540}
+ center {128 128}
+ name Transform3
+ xpos -111
+ ypos -88
+}
+push 0
+push $Nc48e7200
+Transform {
+ translate {400 140}
+ center {128 128}
+ name Transform2
+ xpos -216
+ ypos -90
+}
+Constant {
+ inputs 0
+ channels rgb
+ format "2048 1080 0 0 2048 1080 1 2K_DCP"
+ name Constant1
+ xpos -389
+ ypos -234
+}
+Merge2 {
+ inputs 3+1
+ name Merge1
+ xpos -389
+ ypos -72
+}
+FlareSim {
+ lens_file C:/Users/Admin/.nuke/plugins/FlareSim/lenses/lens_files/Hasselblad_65mm_F2.8_(Hasselblad_XCD_2.8_65).lens
+ ray_grid 512
+ output_mode "Flare as RGB"
+ name FlareSim1
+ selected true
+ xpos -245
+ ypos -8
+}
+Viewer {
+ frame 1
+ frame_range 1-24
+ monitorOutNDISenderName "Nuke - untitled - Viewer1"
+ monitorOutOutputTransform rec709
+ name Viewer1
+ xpos -185
+ ypos 103
+}
