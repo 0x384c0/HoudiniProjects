@@ -1,5 +1,7 @@
 *.nknc~
 *.nknc.autosave
+*.nk~
+*.nk.autosave
 render/
 out/
 *.lnk
